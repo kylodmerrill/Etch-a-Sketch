@@ -11,7 +11,8 @@
 }
 
 #grid {
-    width: 720px;
+    width: 705px;
+    height: 705px;
     flex-wrap: wrap;
     display: flex;
     padding: 25px;
