@@ -1,3 +1,4 @@
+// create default grid on site startup
 for (let i = 0; i < 256; i++) {
     const box = document.createElement('div');
     box.className = "box";
@@ -11,21 +12,25 @@ const box = document.getElementsByClassName('box');
 
 btn.addEventListener('click', () => {
 
+    // remove default grid
     for (let i = 0; i < 256; i++) {
             grid.removeChild(grid.firstChild);
     }
 
+    // take user input to save as dimensions variables
     const dim = prompt("Please enter a number between 1 and 100", "16");
+    const dimSqrd = Math.pow(dim, 2);
 
-    for (let i = 0; i < Math.pow(dim, 2); i++) {
-        const box = document.createElement('div');
-        box.className = "box";
+    // generate new grid
+    for (let i = 0; i < dimSqrd; i++) {
+    const box = document.createElement('div');
+    box.className = "box";
+
+    document.getElementById('grid').appendChild(box);
+    }
+
+    // adjust box sizing
+    grid.style.gridTemplateColumns = `repeat(${dim}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${dim}, 1fr)`;
     
-        document.getElementById('grid').appendChild(box);
-    }
-
-    for (let i = 0; i < dim; i++) {
-        let element = box[i];
-        element.style.width = (689 - (dim + 1)) / dim; 
-    }
 })
